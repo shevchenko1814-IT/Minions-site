@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Світ Посіпак (Minions)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffeb3b; /* Жовтий колір посіпак */
+            color: #1a237e; /* Синій колір комбінезонів */
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        header {
+            background-color: #0d47a1;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            width: 250px;
+            padding: 15px;
+            text-align: center;
+        }
+        .card img {
+            width: 150px;
+            height: 180px;
+            object-fit: contain;
+        }
+        .facts {
+            margin-top: 30px;
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🍌 Ласкаво просимо на сайт про Посіпак!</h1>
+        <p>Маленькі жовті створіння, які люблять банани та лиходіїв!</p>
+    </header>
+
+    <h2>Головні герої</h2>
+    <div class="container">
+        {% for minion in minions %}
+        <div class="card">
+            <!-- Використовуємо url_for для коректного завантаження локальної картинки з папки static/images/ -->
+            <img src="{{ url_for('static', filename=minion.image) }}" alt="{{ minion.name }}">
+            <h3>{{ minion.name }}</h3>
+            <p><strong>Очей:</strong> {{ minion.eyes }}</p>
+            <p>{{ minion.trait }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="facts">
+        <h3>Цікаві факти:</h3>
+        <p>🗣 Розмовляють унікальною мовою <strong>Minionese</strong>, що містить елементи різних мов світу.</p>
+        <p>🍌 Улюблені ласощі: Банани та «баплс» (яблука).</p>
+    </div>
+
+</body>
+</html>
